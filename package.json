@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "rxsapper",
+  "description": "Template combining sapper with rxdb",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
@@ -11,6 +11,9 @@
   "dependencies": {
     "compression": "^1.7.1",
     "polka": "next",
+    "pouchdb-adapter-idb": "^7.2.2",
+    "rxdb": "^9.15.0",
+    "rxjs": "^6.6.7",
     "sirv": "^1.0.0"
   },
   "devDependencies": {
