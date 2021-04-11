@@ -1,3 +1,8 @@
+# rxsapper
+
+This is the [Sapper](https://github.com/sveltejs/sapper) webpack template modified to incorporate [rxdb](https://rxdb.info/). There is no full documentation yet, so below is the original sapper-template readme:
+
+
 # sapper-template
 
 The default template for setting up a [Sapper](https://github.com/sveltejs/sapper) project. Can use either Rollup or webpack as bundler.
