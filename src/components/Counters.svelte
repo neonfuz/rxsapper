@@ -1,39 +1,62 @@
 <script>
- let counters = [
-     { name: 'Foo', value: 2 },
-     { name: 'Bar', value: 5 },
-     { name: 'Baz', value: 12 },
- ];
- const addCounter = () => counters = [...counters, { name: '', value: 0 }];
- const removeCounter = i => () => counters = [...counters.slice(0,i), ...counters.slice(i+1)];
+ import getDb from '../db.js';
+ import {onMount} from 'svelte';
+
+ let items = [];
+ let store = null;
+ let addCounter = () => null;
+ let removeCounter = i => () => null;
+
+ const handleChange = i => e => {
+     e.preventDefault();
+     items[i].update({
+         $set: {
+             [e.target.name]: (
+                 e.target.type === 'number'
+                 ? Number(e.target.value)
+                 : e.target.value
+             )
+         }
+     });
+ }
+
+ onMount(async () => {
+     const { counters } = await getDb();
+
+     store = counters.find().$;
+     store.subscribe(newItems => items = newItems);
+
+     addCounter = () => counters.insert({ order: `${Date.now()}`, name: '', count: 0 });
+     removeCounter = i => () => items[i].remove();
+ });
 </script>
 
-
-<table>
-    <thead>
-        <tr>
-            <th>Score</th>
-            <th>Name</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each counters as {name, value}, i}
+<div>
+    <table>
+        <thead>
             <tr>
-                <td><input type=number bind:value /></td>
-                <td><input type=text bind:value={name} /></td>
-                <td><button on:click={removeCounter(i)}>🗑</button></td>
+                <th>Score</th>
+                <th>Name</th>
+                <th>Delete</th>
             </tr>
-        {/each}
-        <tr>
-            <td colspan=3>
-                <button style=width:100% on:click={addCounter}>+</button>
-            </td>
-        </tr>
-    </tbody>
-
-</table>
-
+        </thead>
+        <tbody>
+            {#each items as {name, count}, i}
+                <tr>
+                    <td><input name="count" type=number value={count} on:change={handleChange(i)} /></td>
+                    <td><input name="name" type=text value={name} on:change={handleChange(i)} /></td>
+                    <td><button on:click={removeCounter(i)}>🗑</button></td>
+                </tr>
+            {/each}
+            <tr>
+                <td colspan=3>
+                    <button style=width:100% on:click={addCounter}>+</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pre>{JSON.stringify(items, null, 2)}</pre>
+</div>
 
 
 <style>
@@ -42,5 +65,11 @@
  }
  input[type=number] {
      width: 3.2em;
+ }
+ table {
+     float: left;
+ }
+ pre {
+     float: right;
  }
 </style>

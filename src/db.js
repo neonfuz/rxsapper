@@ -9,21 +9,26 @@ const options = {
 };
 
 const collections = {
-    example: {
+    counters: {
         schema: {
-            title: 'example schema',
-            description: 'schema for an example object',
+            title: 'counters schema',
+            description: 'schema for a named counter',
             version: 0,
             type: 'object',
             properties: {
-                name: {
+                order: {
                     type: 'string',
                     primary: true
+                },
+                name: {
+                    type: 'string'
                 },
                 count: {
                     type: 'number'
                 }
             }
+        },
+        migrationStrategies: {
         }
     }
 };
