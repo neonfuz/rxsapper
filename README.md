@@ -32,8 +32,8 @@ Once you have created the project, install dependencies and run the project in d
 
 ```bash
 cd my-app
-yarn install
-yarn dev
+yarn install # or npm
+yarn run dev
 ```
 
 This will start the development server on [localhost:3000](http://localhost:3000). Open it and click around.
