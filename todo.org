@@ -1,0 +1,7 @@
+#+TITLE: Todo
+
+* Ideas
+* Milestone 0.1
+** TODO Better organize / separate schema & behaviour
+** TODO Name DB from project name
+** TODO fine tweak readme
