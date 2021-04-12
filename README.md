@@ -1,11 +1,13 @@
-# rxsapper
+# RxSapper
 
-This is the [Sapper](https://github.com/sveltejs/sapper) webpack template modified to incorporate [rxdb](https://rxdb.info/). There is no full documentation yet, so below is the original sapper-template readme:
+The [Sapper](https://github.com/sveltejs/sapper) webpack template modified to incorporate [rxdb](https://rxdb.info/). There is no full documentation yet, so below is the original sapper-template readme slightly updated for this repo. This software is alpha and should not yet be considered "production ready".
 
+## Reasoning for using Sapper-Webpack
 
-# sapper-template
-
-The default template for setting up a [Sapper](https://github.com/sveltejs/sapper) project. Can use either Rollup or webpack as bundler.
+The way RXDB is packaged, it's not friendly with Rollup. Therefore, neither
+Sapper-Rollup or SvelteKit are currently compatible with RXDB. Therefore to
+combine RXDB with Svelte we start with sapper-webpack. With this combination we
+can work fully offline.
 
 
 ## Getting started
@@ -13,28 +15,15 @@ The default template for setting up a [Sapper](https://github.com/sveltejs/sappe
 
 ### Using `degit`
 
-To create a new Sapper project based on Rollup locally, run
+To create a new RxSapper project run
 
 ```bash
-npx degit "sveltejs/sapper-template#rollup" my-app
-```
-
-For a webpack-based project, instead run
-
-```bash
-npx degit "sveltejs/sapper-template#webpack" my-app
+npx degit "neonfuz/rxsapper" my-app
 ```
 
 [`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository.
 
 Replace `my-app` with the path where you wish to create the project.
-
-
-### Using GitHub templates
-
-Alternatively, you can create the new project as a GitHub repository using GitHub's template feature.
-
-Go to either [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup) or [sapper-template-webpack](https://github.com/sveltejs/sapper-template-webpack) and click on "Use this template" to create a new project repository initialized by the template.
 
 
 ### Running the project
@@ -43,13 +32,13 @@ Once you have created the project, install dependencies and run the project in d
 
 ```bash
 cd my-app
-npm install # or yarn
-npm run dev
+yarn install
+yarn dev
 ```
 
 This will start the development server on [localhost:3000](http://localhost:3000). Open it and click around.
 
-You now have a fully functional Sapper project! To get started developing, consult [sapper.svelte.dev](https://sapper.svelte.dev).
+You now have a fully functional RxSapper project! To get started developing, consult [sapper.svelte.dev](https://sapper.svelte.dev) and [rxdb.info](https://rxdb.info/).
 
 ### Using TypeScript
 
