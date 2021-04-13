@@ -2,9 +2,10 @@ import {
     createRxDatabase,
     addRxPlugin,
 } from 'rxdb';
+import cfg from '../package.json';
 
 const options = {
-    name: 'rxsapper',
+    name: cfg.name,
     adapter: 'idb'
 };
 
