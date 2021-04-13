@@ -3,35 +3,11 @@ import {
     addRxPlugin,
 } from 'rxdb';
 import cfg from '../package.json';
+import collections from './collections';
 
 const options = {
     name: cfg.name,
     adapter: 'idb'
-};
-
-const collections = {
-    counters: {
-        schema: {
-            title: 'counters schema',
-            description: 'schema for a named counter',
-            version: 0,
-            type: 'object',
-            properties: {
-                order: {
-                    type: 'string',
-                    primary: true
-                },
-                name: {
-                    type: 'string'
-                },
-                count: {
-                    type: 'number'
-                }
-            }
-        },
-        migrationStrategies: {
-        }
-    }
 };
 
 addRxPlugin(require('pouchdb-adapter-idb'));
