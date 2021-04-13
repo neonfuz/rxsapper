@@ -26,6 +26,12 @@ npx degit "neonfuz/rxsapper" my-app
 Replace `my-app` with the path where you wish to create the project.
 
 
+### Change package name
+
+The rxdb database name defaults to the package name defined in package.json.
+Customize this to separate data between various rxdb projects.
+
+
 ### Running the project
 
 Once you have created the project, install dependencies and run the project in development mode:
@@ -39,6 +45,14 @@ yarn run dev
 This will start the development server on [localhost:3000](http://localhost:3000). Open it and click around.
 
 You now have a fully functional RxSapper project! To get started developing, consult [sapper.svelte.dev](https://sapper.svelte.dev) and [rxdb.info](https://rxdb.info/).
+
+
+
+---
+
+Below this point is unedited from the original sapper readme
+
+---
 
 ### Using TypeScript
 
