@@ -1,34 +1,15 @@
 <script>
- import getDb from '../db.js';
+ import getDb, {handleChange, handleRemove} from '../db.js';
  import {onMount} from 'svelte';
 
- let items = [];
- let store = null;
+ let counters = [];
  let addCounter = () => null;
- let removeCounter = i => () => null;
-
- const handleChange = i => e => {
-     e.preventDefault();
-     items[i].update({
-         $set: {
-             [e.target.name]: (
-                 e.target.type === 'number'
-                 ? Number(e.target.value)
-                 : e.target.value
-             )
-         }
-     });
- }
 
  onMount(async () => {
-     const { counters } = await getDb();
-
-     store = counters.find().$;
-     store.subscribe(newItems => items = newItems);
-
-     addCounter = () => counters.insert({ order: `${Date.now()}`, name: '', count: 0 });
-     removeCounter = i => () => items[i].remove();
- });
+     const db = await getDb();
+     db.counters.find().$.subscribe(next => counters = next);
+     addCounter = () => db.counters.insert({ order: `${Date.now()}`, name: '', count: 0 });
+  });
 </script>
 
 <div>
@@ -41,11 +22,11 @@
             </tr>
         </thead>
         <tbody>
-            {#each items as {name, count}, i}
+            {#each counters as counter, i}
                 <tr>
-                    <td><input name="count" type=number value={count} on:change={handleChange(i)} /></td>
-                    <td><input name="name" type=text value={name} on:change={handleChange(i)} /></td>
-                    <td><button on:click={removeCounter(i)}>🗑</button></td>
+                    <td><input name="count" type=number value={counter.count} on:change={handleChange(counter)} /></td>
+                    <td><input name="name" type=text value={counter.name} on:change={handleChange(counter)} /></td>
+                    <td><button on:click={handleRemove(counter)}>🗑</button></td>
                 </tr>
             {/each}
             <tr>
@@ -55,7 +36,7 @@
             </tr>
         </tbody>
     </table>
-    <pre>{JSON.stringify(items, null, 2)}</pre>
+    <pre>{JSON.stringify(counters, null, 2)}</pre>
 </div>
 
 

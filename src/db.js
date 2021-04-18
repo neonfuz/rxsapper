@@ -30,3 +30,12 @@ export default () => {
     if (!dbPromise) dbPromise = _create();
     return dbPromise;
 }
+
+export const handleChange = item => e => {
+    let value = e.target.value;
+    if (e.target.type === 'number')
+        value = Number(value);
+    item.atomicPatch({ [e.target.name]: value })
+}
+
+export const handleRemove = item => () => item.remove();
