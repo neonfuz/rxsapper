@@ -8,8 +8,8 @@
  onMount(async () => {
      const db = await getDb();
      db.counters.find().$.subscribe(next => counters = next);
-     addCounter = () => db.counters.insert({ order: `${Date.now()}`, name: '', count: 0 });
-  });
+     addCounter = () => db.counters.insert({ order: `${Date.now()}` });
+ });
 </script>
 
 <div>

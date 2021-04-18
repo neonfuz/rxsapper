@@ -10,10 +10,12 @@ export default {
                 primary: true
             },
             name: {
-                type: 'string'
+                type: 'string',
+                default: ''
             },
             count: {
-                type: 'number'
+                type: 'number',
+                default: 0
             }
         }
     },
