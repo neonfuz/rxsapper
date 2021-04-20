@@ -1,5 +1,5 @@
 import * as sapper from '@sapper/app';
-import getDb from './db.js';
+import getDb from './db.ts';
 
 const db = getDb();
 

@@ -1,5 +1,5 @@
 <script>
- import getDb, {handleChange, handleRemove} from '../db.js';
+ import getDb, {handleChange, handleRemove} from '../db.ts';
  import {onMount} from 'svelte';
 
  let counters = [];
