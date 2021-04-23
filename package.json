@@ -3,7 +3,9 @@
   "description": "Template combining sapper with rxdb",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev",
+    "dev": "npm run dev:sapper & npm run dev:pouch",
+    "dev:sapper": "sapper dev",
+    "dev:pouch": "mkdir -p __sapper__/db; cd __sapper__/db; pouchdb-server --dir .",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build"
@@ -12,6 +14,7 @@
     "compression": "^1.7.1",
     "polka": "next",
     "pouchdb-adapter-idb": "^7.2.2",
+    "pouchdb-server": "^4.2.0",
     "rxdb": "^9.15.0",
     "rxjs": "^6.6.7",
     "sirv": "^1.0.0"
