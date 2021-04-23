@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run dev:sapper & npm run dev:pouch",
     "dev:sapper": "sapper dev",
-    "dev:pouch": "mkdir -p __sapper__/db; cd __sapper__/db; pouchdb-server --dir .",
+    "dev:pouch": "mkdir -p __sapper__/db; cd __sapper__/db; pouchdb-server --dir . -o 0.0.0.0",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build"

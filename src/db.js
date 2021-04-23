@@ -32,7 +32,8 @@ const _create = async syncURL => {
     return db;
 }
 
-export default (syncURL=`http://localhost:5984/`) => {
+export default () => {
+    const syncURL=`http://${window.location.hostname}:5984/`
     if (!dbPromise) dbPromise = _create(syncURL);
     return dbPromise;
 }
