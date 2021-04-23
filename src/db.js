@@ -10,10 +10,11 @@ const options = {
     adapter: 'idb'
 };
 
+addRxPlugin(require('pouchdb-adapter-http'));
 addRxPlugin(require('pouchdb-adapter-idb'));
 
 let dbPromise = null;
-const _create = async () => {
+const _create = async syncURL => {
     console.log('Database Service: creating database...');
     const db = await createRxDatabase(options);
     window['db'] = db;
@@ -23,11 +24,16 @@ const _create = async () => {
     await db.addCollections(collections);
     console.log('Database Service: created collections.');
 
+    console.log('Database Service: syncing databases...')
+    Object.keys(collections).forEach(name => db[name].sync({
+        remote: syncURL + name + '/'
+    }))
+
     return db;
 }
 
-export default () => {
-    if (!dbPromise) dbPromise = _create();
+export default (syncURL=`http://localhost:5984/`) => {
+    if (!dbPromise) dbPromise = _create(syncURL);
     return dbPromise;
 }
 
