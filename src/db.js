@@ -4,6 +4,7 @@ import {
 } from 'rxdb';
 import cfg from '../package.json';
 import collections from './collections';
+import {onMount} from 'svelte';
 
 const options = {
     name: cfg.name,
@@ -32,10 +33,17 @@ const _create = async syncURL => {
     return db;
 }
 
-export default () => {
+export const getDb = () => {
     const syncURL=`http://${window.location.hostname}:5984/`
     if (!dbPromise) dbPromise = _create(syncURL);
     return dbPromise;
+}
+
+export const withDb = fn => {
+    onMount(async () => {
+        const db = await getDb();
+        fn(db);
+    });
 }
 
 export const handleChange = item => e => {

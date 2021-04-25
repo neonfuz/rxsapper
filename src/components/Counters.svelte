@@ -1,12 +1,10 @@
 <script>
- import getDb, {handleChange, handleRemove} from '../db.js';
- import {onMount} from 'svelte';
+ import {withDb, handleChange, handleRemove} from '../db.js';
 
  let counters = [];
  let addCounter = () => null;
 
- onMount(async () => {
-     const db = await getDb();
+ withDb(async db => {
      db.counters.find().$.subscribe(next => counters = next);
      addCounter = () => db.counters.insert({ order: `${Date.now()}` });
  });
