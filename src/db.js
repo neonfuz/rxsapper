@@ -48,8 +48,10 @@ export const withDb = fn => {
 
 export const handleChange = item => e => {
     let value = e.target.value;
-    if (e.target.type === 'number')
-        value = Number(value);
+    switch (e.target.type) {
+        case 'number': value = Number(value); break;
+        case 'checkbox': value = e.target.checked; break;
+    }
     item.atomicPatch({ [e.target.name]: value })
 }
 
